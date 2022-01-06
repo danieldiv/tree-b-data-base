@@ -18,15 +18,10 @@ void randomValue() {
 	printf("Inicializando arquivos de entrada...\n");
 
 	strcpy(nome, "src/files/clientes.txt");
-	writeFile(nome, 1000);
+	writeFile(nome, nome, 1000);
 }
 
-/**
- * @brief realiza a criacao de um arquivo
- * @param nome nome utilizado para o arquivo criado
- * @param max quantidade de valores aleatorios para criar
- */
-void writeFile(char *nome, int max) {
+void writeFile(char *nome, char *valor, int max) {
 	FILE *file;
 	char array[100];
 	char *result;
@@ -34,100 +29,75 @@ void writeFile(char *nome, int max) {
 	int n = 0;
     int cont = 0;
 
-	file = fopen(nome, "w");
+	file = fopen(nome, "r");
+	strcat(valor, "\n");
 
-    for(int i=0; i < max; i++) {
-        n = get_random();
-		sprintf(array, "%d", n);
-		strcat(array, "\n");
-		fputs(array, file);
-    }
+    // for(int i=0; i < max / 100; i++) {
+        // n = get_random();
+		// sprintf(array, "%d", n);
+		// strcat(array, "\n");
+		fputs(valor, file);
+		// fputs(array, file);
+    // }
 	fclose(file);
 }
 
-// /**
-//  * @brief Realiza a leitura de um arquivo e salva os valores nas arvores
-//  * 
-//  * @param raizS ponteiro da arvore simples
-//  * @param raizAVL ponteiro da arvore AVL
-//  * @param raizRB ponteiro da arvore red black
-//  * @param tamanho valor do arquivo de entrada a ser aberto
-//  * @param tS ponteiro para o tempo da arvore simples
-//  * @param tAVL ponteiro para o tempo da arvore AVL
-//  * @param tRB ponteiro para o tempo da arvore rubro negra
-//  */
-// void readFileInput(TreeS **raizS, TreeAVL **raizAVL, TreeRB **raizRB, int tam, double *tS, double *tAVL, double *tRB) {
-// 	FILE *fileS, *fileAVL, *fileRB;
+void readFileInput() {
+	FILE *file;
 
-// 	clock_t time;
+	char linha[100];
+	char nome[100];
+	char text[20];
+	char *result;
 
-// 	char linha[100];
-// 	char text[20];
-// 	char *result;
+	int cont = 0;
 
-// 	int cont = 0;
+	strcpy(linha, "src/files/clientes-nomes.txt");
 
-// 	sprintf(text, "%d", tam);
-// 	strcpy(linha, PATH_INPUT);
-// 	strcat(linha, strcat(text, ".txt"));
+	printf("Inicializando arquivos de entrada...\n");
+	strcpy(nome, "src/files/clientes.txt");
 
-// 	fileS = fopen(linha, "r");
-// 	fileAVL = fopen(linha, "r");
-// 	fileRB = fopen(linha, "r");
+	file = fopen(linha, "r");
+	// file2 = fopen(nome, "w");
 
-// 	int contadorRP = 0;
+	if(file == NULL) {
+		printf("Erro ao abrir arquivo de entrada: nomes\n");
+		return;
+	} else {
+		while(!feof(file)) {
+			result = fgets(linha, 100, file);
 
-// 	if(fileS == NULL) {
-// 		printf("Erro ao abrir arquivo de entrada\n");
-// 		return;
-// 	} else {
-// 		Record r;
-		
-// 		time = clock();
+			if(result) {
+				tokenizar(linha);
+				printf("%s\n", linha);
+				strcat(linha, "\n");
+				// fputs(linha, file2);
+				cont++;
+			}
+		}
+		printf("cont: %d\n", cont);
+	}
+	fclose(file);
+}
 
-// 		while(!feof(fileS)) {
-// 			result = fgets(linha, 100, fileS);
+void tokenizar(char *str) {
+	const char sep[] = "<> , ' '";
+	char *tokens;
+	int cont = 0;
 
-// 			if(result) {
-// 				r.key = atof(linha);
-// 				insertItemS(raizS, r);
-// 				cont++;
-// 			}
-// 		}
-// 		*tS = ((clock() - time) / (double)CLOCKS_PER_SEC); // 1
-
-// 		time = clock();
-
-// 		while(!feof(fileAVL)) {
-// 			result = fgets(linha, 100, fileAVL);
-
-// 			if(result) {
-// 				r.key = atof(linha);
-// 				insertItemAVL(raizAVL, r);
-// 				cont++;
-// 			}
-// 		}
-// 		*tAVL = ((clock() - time) / (double)CLOCKS_PER_SEC); // 2
-
-// 		time = clock();
-
-// 		while(!feof(fileRB)) {
-// 			result = fgets(linha, 100, fileRB);
-
-// 			if(result) {
-// 				r.key = atof(linha);
-// 				insertItemRB(raizRB, r, &contadorRP, &cont);
-// 			}
-// 		}
-// 		*tRB = ((clock() - time) / (double)CLOCKS_PER_SEC); // 3
-// 	}
-// 	printf("\n%d valores inseridos no total\n", cont);
-// 	printf("\n%d valores repetidos\n", contadorRP);
+	int aux = 0;
 	
-// 	fclose(fileS);
-// 	fclose(fileAVL);
-// 	fclose(fileRB);
-// }
+	tokens = strtok(str, sep);
+	
+	while(tokens != NULL) {
+		if(aux == 1) {
+			strcpy(str, tokens);
+			return;
+		}
+        aux = 1;
+		tokens = strtok(NULL, sep);
+	}
+}
 
 // /**
 //  * @brief Realiza a leitura de um arquivo e faz a pesquisa

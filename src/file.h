@@ -10,8 +10,9 @@
 #define PATH_INPUT "src/files/input"
 #define PATH_SEARCH "src/files/search"
 
-void writeFile(char *nome, int max);
-// void readFileInput(TreeS **raizS, TreeAVL **raizAVL, TreeRB **raizRB, int tam, double *tS, double *tAVL, double *tRB);
+void writeFile(char *nome, char *valor, int max);
+void readFileInput();
+void tokenizar(char *str);
 // void readFileSearch(TreeS **raizS, TreeAVL **raizAVL, TreeRB **raizRB, int tam, double *tS, double *tAVL, double *tRB);
 void randomValue();
 

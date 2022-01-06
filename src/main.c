@@ -2,7 +2,16 @@
 
 int main() {
 
-    randomValue();
+    char t[20];
+    strcpy(t, "danil alves sanches");
+
+    // strcpy(t, "danil alves sanches");
+
+
+
+    // tokenizar(t);
+    readFileInput();
+    // randomValue();
 
     // int valor = get_random();
     // int cont = 0;
