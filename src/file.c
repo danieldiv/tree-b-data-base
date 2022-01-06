@@ -1,7 +1,7 @@
 #include "file.h"
 
 /**
- * @brief Gera um numero aleatorio inteiro na faixa de 1000 a 2000
+ * @brief Gera um numero aleatorio inteiro na faixa de 1000 a 9999
  * 
  */
 int get_random() { return (1000 + rand() % 2000); }
