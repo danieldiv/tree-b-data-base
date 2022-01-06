@@ -4,7 +4,7 @@
 
 - 1000 dados de entrada
 
-- cada dado possui nome, idade, cpf: clientes
+- cada dado possui (nome, idade, cpf): clientes
 
 - cada pagina possui 10 dados por arquivo, um total de 100 arquivos
 
