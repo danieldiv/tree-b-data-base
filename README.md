@@ -10,4 +10,4 @@
 
 - m = 2, minino é igual a m-1 e maximo é igual a (m * 2) - 1
 
-  - minino: 1   |   maximo: 3
+  - minino: 1 | maximo: 3
