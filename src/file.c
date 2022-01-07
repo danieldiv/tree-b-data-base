@@ -36,21 +36,6 @@ void writeFile(int start, int end, char *valor) {
 	fclose(file);
 }
 
-/**
- * @brief Realiza a leitura do arquivo com os nomes dos clientes, o arquivos com os cpfs
- * gerados aleatoriamente e retirados valores repetidos via excel.
- * 
- * A leitura do nome das pessoas possui mais informacoes, sendo necessario tokenizar,
- * estando apenas com o nome, sera adicionado o cpf e a idade gerado aleatoriamente entre 1 e 80
- * 
- * A quantidade de digitos utilizado para os CPFs sao 4, foi gerado valores aleatorio
- * e depois ordenados para facilitar na manutencao da criacao de arquivos.
- * 
- * Os nomes utilizado foi adiquirito da internet
- * 
- * A idade foi gerado randomicamente
- * 
- */
 void readFileConcat(Lista *lista) {
 	FILE *fileDados;
 	FILE *fileCPF;
