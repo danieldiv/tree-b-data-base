@@ -19,5 +19,6 @@ void randomValue();
 // void readFileInput1Bilhao(TreeRB **raizRB, double *tempo);
 
 int get_random();
+int get_randomIdade();
 
 #endif

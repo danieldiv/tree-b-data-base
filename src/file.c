@@ -1,67 +1,69 @@
 #include "file.h"
 
 /**
- * @brief Gera um numero aleatorio inteiro na faixa de 1000 a 9999
+ * @brief Gera um numero aleatorio inteiro na faixa de 1000 a 9000
  * 
  */
-int get_random() { return (1000 + rand() % 2000); }
+int get_random() { return (1000 + rand() % 9000); }
 
 /**
- * @brief cria 6 arquivos.txt de (1000, 10000, 1000000) valores para insersao
- * e (5000, 10000, 100000) valores para pesquisa.
- * Sendo estes valores aleatorios do tipo double
+ * @brief Gera um numero aleatorio inteiro na faixa de 1 a 80
+ * 
  */
-void randomValue() {
-	char nome[100];
+int get_randomIdade() { return (1 + rand() % 80); }
 
-	srand(time(NULL));
-	printf("Inicializando arquivos de entrada...\n");
-
-	strcpy(nome, "src/files/clientes.txt");
-	writeFile(nome, nome, 1000);
-}
-
-void writeFile(char *nome, char *valor, int max) {
-	FILE *file;
-	char array[100];
-	char *result;
-
-	int n = 0;
-    int cont = 0;
-
-	file = fopen(nome, "r");
-	strcat(valor, "\n");
-
-    // for(int i=0; i < max / 100; i++) {
-        // n = get_random();
-		// sprintf(array, "%d", n);
-		// strcat(array, "\n");
-		fputs(valor, file);
-		// fputs(array, file);
-    // }
-	fclose(file);
-}
-
+/**
+ * @brief Arquivos
+ * 
+ * A quantidade de digitos utilizado para os CPFs sao 4, foi gerado valores aleatorio
+ * e depois ordenados para facilitar na manutencao da criacao de arquivos.
+ * 
+ * Os nomes utilizado foi adiquirito da internet
+ * 
+ * A idade foi gerado randomicamente
+ * 
+ */
 void readFileInput() {
 	FILE *file;
+	FILE *fileClientes;
+	FILE *fileCPF;
+
+	int cpf[1000];
 
 	char linha[100];
+	char pathCPF[100];
 	char nome[100];
 	char text[20];
 	char *result;
 
 	int cont = 0;
+	int n;
 
-	strcpy(linha, "src/files/clientes-nomes.txt");
-
-	printf("Inicializando arquivos de entrada...\n");
+	strcpy(pathCPF, "src/files/clientes-cpf.txt");
+	strcpy(linha, "src/files/clientes-original.txt");
 	strcpy(nome, "src/files/clientes.txt");
 
 	file = fopen(linha, "r");
-	// file2 = fopen(nome, "w");
+	fileClientes = fopen(nome, "w");
+	fileCPF = fopen(pathCPF, "r");
 
+	if(fileCPF == NULL) {
+		printf("Erro ao abrir arquivo de entrada\n");
+		return;
+	} else {
+		while(!feof(fileCPF)) {
+			result = fgets(linha, 100, fileCPF);
+
+			if(result) {
+				n = atoi(linha);
+				cpf[cont++] = n;
+			}
+		}
+	}
+
+	cont = 0;
 	if(file == NULL) {
-		printf("Erro ao abrir arquivo de entrada: nomes\n");
+		printf("Erro ao abrir arquivo de entrada\n");
 		return;
 	} else {
 		while(!feof(file)) {
@@ -69,15 +71,27 @@ void readFileInput() {
 
 			if(result) {
 				tokenizar(linha);
-				printf("%s\n", linha);
-				strcat(linha, "\n");
-				// fputs(linha, file2);
-				cont++;
+
+				n = get_randomIdade();
+				sprintf(text, "%d", n);
+
+				strcat(linha, ",");
+				strcat(linha, text);
+
+				sprintf(text, "%d", cpf[cont++]);
+
+				strcat(text, ",");
+				strcat(text, linha);
+				strcat(text, "\n");
+
+				fputs(text, fileClientes);
 			}
 		}
 		printf("cont: %d\n", cont);
 	}
 	fclose(file);
+	fclose(fileClientes);
+	fclose(fileCPF);
 }
 
 void tokenizar(char *str) {
