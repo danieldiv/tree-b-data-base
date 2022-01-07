@@ -11,3 +11,9 @@
 - m = 2, minino é igual a m-1 e maximo é igual a (m * 2) - 1
 
   - minino: 1 | maximo: 3
+
+## Base de dados
+
+- A base de dados com o nome pode ser encontrada em:
+
+  - https://basedosdados.org/dataset/br-ibge-nomes-brasil
