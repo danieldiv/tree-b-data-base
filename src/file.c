@@ -12,12 +12,18 @@ int get_random() { return (1000 + rand() % 9000); }
  */
 int get_randomIdade() { return (1 + rand() % 80); }
 
-void writeFile(char *nome, char *valor) {
+void writeFile(int start, int end, char *valor) {
 	FILE *file;
-	char path[100];
+	char *path = (char*)malloc((strlen(PATH_CLIENTES) + 15) * sizeof(char));
 
-	strcpy(path, "src/files/clientes/teste.txt");
-	// strcat(path, strcat(nome, ".txt"));
+	char aux_start[20], aux_end[20];
+
+	sprintf(aux_start, "%d", start);
+	sprintf(aux_end, "%d", end);
+
+	strcpy(path, PATH_CLIENTES);
+	strcat(aux_start, "...");
+	strcat(path, strcat(aux_start, strcat(aux_end, ".txt")));
 
 	file = fopen(path, "w");
 
@@ -27,7 +33,6 @@ void writeFile(char *nome, char *valor) {
 	} else {
 		fputs(valor, file);
 	}
-	printf("%s", valor);
 	fclose(file);
 }
 
@@ -46,104 +51,85 @@ void writeFile(char *nome, char *valor) {
  * A idade foi gerado randomicamente
  * 
  */
-void readFileConcat() {
+void readFileConcat(Lista *lista) {
 	FILE *fileDados;
-	FILE *fileClientes;
 	FILE *fileCPF;
+
+	Item item;
+	item.valor = (char*)malloc(200 * sizeof(char));
 
 	int cpf[1000];
 	int cont = 0;
 
 	int controle = TRUE;
-	char nome[10];
 
 	char *pathCPF = (char*)malloc(strlen("src/files/clientes-cpf.txt") * sizeof(char));
 	char *pathDados = (char*)malloc(strlen("src/files/clientes-original.txt") * sizeof(char));
-	char *pathClientes = (char*)malloc(strlen("src/files/clientes.txt") * sizeof(char));
 
-	char text[100], linha[100], cpf_aux[5];
-	char *result, *valor;
-
-	valor = (char*)malloc(200 * sizeof(char));
+	char text[100], linha[100];
+	char *result;
 
 	strcpy(pathCPF, "src/files/clientes-cpf.txt");
 	strcpy(pathDados, "src/files/clientes-original.txt");
-	strcpy(pathClientes, "src/files/clientes.txt");
 
 	fileDados = fopen(pathDados, "r");
-	fileClientes = fopen(pathClientes, "w");
 	fileCPF = fopen(pathCPF, "r");
 
-	if(fileClientes == NULL) {
-		printf("Erro ao abrir ou criar arquivo clientes.txt\n");
+	if(fileCPF == NULL) {
+		printf("Erro ao abrir arquivo clientes-cpf.txt\n");
 		return;
 	} else {
-		if(fileCPF == NULL) {
-			printf("Erro ao abrir arquivo clientes-cpf.txt\n");
-			return;
-		} else {
-			while(!feof(fileCPF)) {
-				result = fgets(linha, sizeof(linha), fileCPF);
+		while(!feof(fileCPF)) {
+			result = fgets(linha, sizeof(linha), fileCPF);
 
-				if(result)
-					cpf[cont++] = atoi(linha);
-			}
-		}
-
-		cont = 0;
-		if(fileDados == NULL) {
-			printf("Erro ao abrir arquivo clientes-original.txt\n");
-			return;
-		} else {
-			while(!feof(fileDados)) {
-				result = fgets(linha, sizeof(linha), fileDados);
-
-				if(result) {
-					tokenizar(linha);
-
-					sprintf(text, "%d", get_randomIdade());
-
-					strcat(linha, ",");
-					strcat(linha, text);
-
-					sprintf(text, "%d", cpf[cont++]);
-					strcpy(cpf_aux, text);
-
-					if(controle) {
-						strcpy(cpf_aux, text);
-						fputs(strcat(cpf_aux, "-"), fileClientes);
-
-						controle = FALSE;
-					}
-
-					strcat(text, ",");
-					strcat(valor, strcat(text, strcat(linha, "\n")));
-
-					if(cont % 10 == 0) {
-						strcat(nome, "...");
-						strcat(nome, cpf_aux);
-						fputs(strcat(cpf_aux, "\n"), fileClientes);
-
-						// writeFile(nome, valor);
-						valor = (char*)malloc(200 * sizeof(char));
-						// printf("\n");
-
-						controle = TRUE;
-					}
-				}
-			}
-			printf("cont: %d\n", cont);
+			if(result)
+				cpf[cont++] = atoi(linha);
 		}
 	}
-	fclose(fileDados);
-	fclose(fileClientes);
-	fclose(fileCPF);
 
-	free(valor);
+	cont = 0;
+	if(fileDados == NULL) {
+		printf("Erro ao abrir arquivo clientes-original.txt\n");
+		return;
+	} else {
+		while(!feof(fileDados)) {
+			result = fgets(linha, sizeof(linha), fileDados);
+
+			if(result) {
+				tokenizar(linha);
+
+				sprintf(text, "%d", get_randomIdade());
+
+				strcat(linha, ",");
+				strcat(linha, text);
+
+				sprintf(text, "%d", cpf[cont++]);
+
+				if(controle) {
+					item.cpfStart = cpf[cont-1];
+					controle = FALSE;
+				}
+
+				strcat(text, ",");
+				strcat(item.valor, strcat(text, strcat(linha, "\n")));
+
+				if(cont % 10 == 0) {
+					item.cpfEnd = cpf[cont-1];
+
+					LInsere(lista, item);
+
+					item.valor = (char*)malloc(200 * sizeof(char));
+					controle = TRUE;
+				}
+			}
+		}
+		printf("cont: %d\n", cont);
+	}
+	fclose(fileDados);
+	fclose(fileCPF);
 
 	free(pathCPF);
 	free(pathDados);
-	free(pathClientes);
 }
 
 void tokenizar(char *str) {

@@ -1,0 +1,10 @@
+1581,Nicolas,66
+1582,Gilda,46
+1589,Emerson,45
+1607,Renildo,8
+1613,Isabel,17
+1614,Suziane,26
+1618,Vinicios,47
+1621,Daiane,50
+1625,Adao,34
+1633,Everton,18

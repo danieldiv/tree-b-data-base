@@ -1,0 +1,10 @@
+1921,Lucas,76
+1931,Jeferson,11
+1955,Jose,75
+1972,Roberval,59
+1977,Eduarda,28
+1980,Vitor,42
+1981,Geisiane,18
+1982,Vinicios,23
+1984,Ieda,38
+1988,Valdeci,13

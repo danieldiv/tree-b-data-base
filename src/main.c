@@ -1,18 +1,36 @@
 #include "file.h"
 
+void createFile(Lista *l);
+void teste(int a, int b, char *valor);
+
 int main() {
 
-    char *nome = (char*)malloc(100*sizeof(char));
-    char *valor = (char*)malloc(100*sizeof(char));
+	Item item;
 
-    // readFileConcat();
+	Lista l;
+	FLVazia(&l);
 
-    strcpy(valor, "testando");
-
-    strcpy(nome, "src/files/clientes/");
-	strcat(nome, strcat(nome, "teste.txt"));
-
-    writeFile(nome, valor);
+    readFileConcat(&l);
+    createFile(&l);
+	// Limprime(&l);
 
     return EXIT_SUCCESS;
+}
+
+void createFile(Lista *l) {
+    Block *aux;
+    char str[20];
+
+	aux = l->first->prox;
+	while(aux != NULL) {
+        writeFile(aux->dado.cpfStart, aux->dado.cpfEnd, aux->dado.valor);
+        // teste(aux->dado.cpfStart, aux->dado.cpfEnd, aux->dado.valor);
+		// printf("%d...%d\n%s\n", aux->dado.cpfStart, aux->dado.cpfEnd, aux->dado.valor);
+		aux = aux->prox;
+	}
+}
+
+void teste(int a, int b, char *valor) {
+    printf("%d-", a);
+    printf("%d\n%s\n", b, valor);
 }

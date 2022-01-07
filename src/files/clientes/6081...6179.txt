@@ -1,0 +1,10 @@
+6081,Florisvaldo,19
+6087,Raimundo,7
+6090,Olga,11
+6105,Everson,5
+6107,Denilson,57
+6116,Tauane,18
+6130,Oliveira,47
+6139,Valeria,21
+6168,Alan,10
+6179,Vera,78

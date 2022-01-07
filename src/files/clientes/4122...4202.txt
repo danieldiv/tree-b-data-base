@@ -1,0 +1,10 @@
+4122,Ana,1
+4131,Vania,25
+4133,Rosangela,23
+4144,Alexandre,70
+4154,Ketlin,37
+4172,Eliana,2
+4188,Iana,31
+4195,Gisele,5
+4196,Marinete,13
+4202,Francisca,53

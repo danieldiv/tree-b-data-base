@@ -1,0 +1,10 @@
+1783,Rubens,13
+1788,Davi,21
+1815,Ivanete,77
+1819,Rosicleide,9
+1857,Luiz,60
+1865,Emanuele,13
+1873,Gustavo,67
+1887,Pamela,27
+1892,Rosana,15
+1902,Railson,20

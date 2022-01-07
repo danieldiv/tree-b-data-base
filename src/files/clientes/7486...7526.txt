@@ -1,0 +1,10 @@
+7486,Divino,34
+7492,Cosmo,24
+7498,Valmir,14
+7500,Tassia,9
+7512,Fransisco,46
+7514,Carlos,12
+7521,Taila,71
+7522,Alan,19
+7525,Fabiano,18
+7526,Pedro,37

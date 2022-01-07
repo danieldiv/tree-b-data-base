@@ -1,0 +1,10 @@
+9721,Paulo,73
+9723,Raquel,58
+9732,Nelson,2
+9754,Caio,16
+9791,Isabela,9
+9794,Luciano,19
+9802,Iolanda,25
+9808,Sandra,76
+9819,Manuel,57
+9822,Marcia,46

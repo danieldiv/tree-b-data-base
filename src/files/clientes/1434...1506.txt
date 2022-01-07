@@ -1,0 +1,10 @@
+1434,Alexandre,70
+1435,Adriana,14
+1436,Ivone,22
+1467,Ugo,40
+1483,Angelica,25
+1494,Thays,58
+1497,Zumira,79
+1500,Antonia,5
+1503,Lucio,76
+1506,Ariane,51

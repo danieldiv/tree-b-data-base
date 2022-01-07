@@ -1,0 +1,10 @@
+5127,Vera,37
+5134,Juliana,23
+5143,Diego,75
+5149,Severina,18
+5159,Andreia,60
+5176,Maiza,4
+5204,Giseli,80
+5206,Jean,3
+5211,Vanda,29
+5215,Kenia,4

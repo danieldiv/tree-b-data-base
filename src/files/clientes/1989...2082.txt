@@ -1,0 +1,10 @@
+1989,Dilma,13
+1993,Alan,37
+2019,Saulo,22
+2027,Rosiane,41
+2034,Gerson,47
+2042,Adriel,2
+2053,Aline,26
+2055,Valdenora,10
+2074,Sandra,45
+2082,Frank,60

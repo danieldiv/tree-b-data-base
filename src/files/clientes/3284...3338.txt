@@ -1,0 +1,10 @@
+3284,Marina,6
+3289,Rafaela,42
+3301,Luis,62
+3310,Emanuel,51
+3315,Tauana,79
+3324,Igor,26
+3325,Marcia,41
+3326,Eli,17
+3336,Aline,5
+3338,Bruna,67

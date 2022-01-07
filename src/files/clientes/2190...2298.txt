@@ -1,0 +1,10 @@
+2190,Romario,8
+2197,Vilson,17
+2218,Milena,58
+2226,Nilza,34
+2235,Emerson,27
+2244,Camile,6
+2269,Sueli,27
+2280,Milene,44
+2286,Cicero,60
+2298,Samuel,65

@@ -1,0 +1,10 @@
+9487,Valmir,12
+9500,Lorival,30
+9524,Eloiza,31
+9529,Iasmin,49
+9552,Claudia,80
+9586,Karine,79
+9599,Lisiane,49
+9618,Renan,51
+9619,Cleide,74
+9624,Micheli,18

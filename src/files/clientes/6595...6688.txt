@@ -1,0 +1,10 @@
+6595,Elias,15
+6601,Julia,52
+6604,Suziane,28
+6618,Carlene,72
+6621,Manoel,32
+6644,Alice,62
+6649,Fernando,58
+6653,Daniela,61
+6682,Silvana,15
+6688,Josias,31

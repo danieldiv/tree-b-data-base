@@ -1,0 +1,10 @@
+1189,Sanderson,12
+1223,Geraldo,9
+1234,Gisele,8
+1236,Lidiane,30
+1269,Marcilene,23
+1270,Antonia,11
+1275,Elaine,63
+1276,Ilma,4
+1297,Max,68
+1303,Simone,16

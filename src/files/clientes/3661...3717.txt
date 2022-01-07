@@ -1,0 +1,10 @@
+3661,Rodrigo,80
+3672,Adalto,14
+3675,Amarildo,14
+3681,Cristiano,69
+3684,Ellen,71
+3685,Ismael,56
+3691,Arthur,47
+3708,Wagner,67
+3709,Karina,45
+3717,Alan,61

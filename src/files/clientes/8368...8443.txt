@@ -1,0 +1,10 @@
+8368,Naiara,30
+8379,Marcia,19
+8390,Rosely,62
+8399,Valdecir,24
+8421,Claudia,14
+8428,Queila,14
+8431,Joana,28
+8433,Cintia,40
+8437,Silvana,9
+8443,Franciele,7

@@ -1,0 +1,10 @@
+9245,Sidinei,9
+9259,Lucia,40
+9260,Ronaldo,6
+9261,Sebastiao,51
+9262,Elizagela,17
+9272,Ismael,1
+9278,Jhonata,19
+9283,Rosilene,44
+9289,Evelen,18
+9290,Augusto,49

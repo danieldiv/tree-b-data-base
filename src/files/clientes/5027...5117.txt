@@ -1,0 +1,10 @@
+5027,Marinete,77
+5047,Valdineia,61
+5057,Sebastiana,55
+5074,Helena,2
+5080,Ligia,61
+5081,Nilson,65
+5088,Bruno,29
+5090,Adao,28
+5109,Flavia,51
+5117,Karina,29

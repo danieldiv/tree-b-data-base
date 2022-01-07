@@ -1,0 +1,10 @@
+1639,Genir,45
+1641,Kaline,56
+1647,Cleomar,63
+1661,Diene,66
+1669,Evelyn,15
+1685,Claudia,8
+1689,Lucia,75
+1690,Paulo,45
+1703,Weliton,44
+1726,Emerson,71

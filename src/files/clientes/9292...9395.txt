@@ -1,0 +1,10 @@
+9292,Anilton,23
+9312,Diene,62
+9336,Mario,71
+9340,Vanusa,36
+9350,Josias,9
+9365,Edilaine,66
+9367,Nivaldo,16
+9376,Marcio,11
+9393,Taina,78
+9395,Marco,54

@@ -1,0 +1,10 @@
+8570,Monica,13
+8571,Janete,52
+8578,Andre,30
+8581,Robson,40
+8596,Marilene,27
+8610,Lindomar,11
+8613,Leticia,57
+8614,Breno,65
+8619,Railene,70
+8622,Ilda,60

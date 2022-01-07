@@ -1,0 +1,10 @@
+3120,Erica,70
+3124,Renato,3
+3147,Debora,63
+3150,Sirlene,65
+3154,Maros,38
+3157,Eugenio,68
+3163,Paulo,76
+3181,Clemente,5
+3205,Vagner,29
+3218,Edimilson,52

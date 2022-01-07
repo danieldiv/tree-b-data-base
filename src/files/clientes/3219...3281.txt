@@ -1,0 +1,10 @@
+3219,Cristina,23
+3225,Danilo,69
+3228,Natalia,20
+3229,Neusa,64
+3231,Edmar,67
+3232,Guilherme,49
+3235,Ronaldo,21
+3253,Viviane,63
+3266,Fabiano,32
+3281,Mauro,51

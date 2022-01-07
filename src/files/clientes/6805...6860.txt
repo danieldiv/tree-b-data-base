@@ -1,0 +1,10 @@
+6805,Geovane,19
+6808,Paula,21
+6812,Marta,19
+6818,Joaquim,62
+6829,Taina,51
+6848,Valtair,23
+6857,Irene,13
+6858,Arlete,20
+6859,Otavio,18
+6860,Sebastiao,46

@@ -1,0 +1,10 @@
+1016,Elen,24
+1018,Raissa,7
+1030,Gabriel,58
+1049,Altina,36
+1050,Jhoni,34
+1051,Frank,16
+1054,Sandro,27
+1060,Amanda,13
+1071,Adriano,10
+1084,Jamile,62

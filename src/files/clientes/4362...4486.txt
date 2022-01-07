@@ -1,0 +1,10 @@
+4362,Ravena,75
+4363,Silvia,5
+4398,Bartolomeu,60
+4413,Keren,50
+4421,Naiara,74
+4435,Emili,17
+4437,Marceliane,51
+4445,Ivanete,56
+4464,Joel,21
+4486,Susana,63

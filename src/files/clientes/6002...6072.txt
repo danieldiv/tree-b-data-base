@@ -1,0 +1,10 @@
+6002,Mateus,11
+6010,Gabriel,10
+6022,Francinei,30
+6025,Talita,35
+6030,Adroaldo,36
+6031,Samuel,42
+6032,Jucelia,61
+6039,Helena,74
+6042,Rodrigo,28
+6072,Rosa,49

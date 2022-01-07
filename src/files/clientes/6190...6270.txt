@@ -1,0 +1,10 @@
+6190,Natalia,6
+6198,Marines,20
+6210,Katia,18
+6211,Elizandra,39
+6222,Girlene,66
+6237,Manoela,64
+6249,Wendell,74
+6254,Etelvina,59
+6258,Lucimar,74
+6270,Tania,38

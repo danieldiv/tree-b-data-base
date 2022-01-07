@@ -1,0 +1,10 @@
+1309,Debora,10
+1360,Geralda,43
+1368,Jonas,23
+1369,Oseas,19
+1372,Israel,30
+1375,Fabio,8
+1377,Valmir,34
+1407,Leonardo,57
+1415,Gabriela,52
+1429,Romildo,43

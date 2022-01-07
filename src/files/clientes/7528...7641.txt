@@ -1,0 +1,10 @@
+7528,Nicoli,4
+7540,Vitoria,16
+7567,Geovana,51
+7590,Denise,19
+7611,Terezinha,51
+7620,Tania,25
+7622,Sofia,12
+7630,Alif,22
+7640,Luzia,34
+7641,Moacir,6

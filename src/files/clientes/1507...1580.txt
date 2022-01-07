@@ -1,0 +1,10 @@
+1507,Antonia,14
+1522,Juliana,7
+1528,Elane,12
+1530,Marlene,21
+1536,Cristiano,37
+1550,Batista,34
+1551,Cicera,63
+1556,Rosana,51
+1574,Veronica,37
+1580,Jeferson,2

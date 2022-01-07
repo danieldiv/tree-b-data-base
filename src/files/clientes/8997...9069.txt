@@ -1,0 +1,10 @@
+8997,Geremias,36
+9017,Adilson,80
+9030,Caroline,43
+9043,Idalina,58
+9049,Gleice,44
+9052,Monica,17
+9057,Odilon,75
+9058,Daniela,18
+9059,Andreia,30
+9069,Lorena,28

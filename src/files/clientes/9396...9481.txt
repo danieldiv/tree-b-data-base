@@ -1,0 +1,10 @@
+9396,Tailane,9
+9403,Erica,43
+9404,Valeria,24
+9414,Rute,31
+9416,Teresinha,18
+9418,Clovis,58
+9428,Gisele,68
+9460,Macia,7
+9478,Alex,70
+9481,Rafaela,72
