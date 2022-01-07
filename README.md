@@ -17,3 +17,7 @@
 - A base de dados com o nome pode ser encontrada em:
 
   - https://basedosdados.org/dataset/br-ibge-nomes-brasil
+
+## Criacao dos arquivos
+
+<!-- - E criado um arquivo .txt nao controlado quando os arquivos de intervalo sao criados, nao sei como remover  -->

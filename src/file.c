@@ -12,8 +12,31 @@ int get_random() { return (1000 + rand() % 9000); }
  */
 int get_randomIdade() { return (1 + rand() % 80); }
 
+void writeFile(char *nome, char *valor) {
+	FILE *file;
+	char path[100];
+
+	strcpy(path, "src/files/clientes/teste.txt");
+	// strcat(path, strcat(nome, ".txt"));
+
+	file = fopen(path, "w");
+
+	if(file == NULL) {
+		printf("Nao foi possivel abrir o arquivo c1\n");
+		return;
+	} else {
+		fputs(valor, file);
+	}
+	printf("%s", valor);
+	fclose(file);
+}
+
 /**
- * @brief Arquivos
+ * @brief Realiza a leitura do arquivo com os nomes dos clientes, o arquivos com os cpfs
+ * gerados aleatoriamente e retirados valores repetidos via excel.
+ * 
+ * A leitura do nome das pessoas possui mais informacoes, sendo necessario tokenizar,
+ * estando apenas com o nome, sera adicionado o cpf e a idade gerado aleatoriamente entre 1 e 80
  * 
  * A quantidade de digitos utilizado para os CPFs sao 4, foi gerado valores aleatorio
  * e depois ordenados para facilitar na manutencao da criacao de arquivos.
@@ -23,75 +46,104 @@ int get_randomIdade() { return (1 + rand() % 80); }
  * A idade foi gerado randomicamente
  * 
  */
-void readFileInput() {
-	FILE *file;
+void readFileConcat() {
+	FILE *fileDados;
 	FILE *fileClientes;
 	FILE *fileCPF;
 
 	int cpf[1000];
-
-	char linha[100];
-	char pathCPF[100];
-	char nome[100];
-	char text[20];
-	char *result;
-
 	int cont = 0;
-	int n;
+
+	int controle = TRUE;
+	char nome[10];
+
+	char *pathCPF = (char*)malloc(strlen("src/files/clientes-cpf.txt") * sizeof(char));
+	char *pathDados = (char*)malloc(strlen("src/files/clientes-original.txt") * sizeof(char));
+	char *pathClientes = (char*)malloc(strlen("src/files/clientes.txt") * sizeof(char));
+
+	char text[100], linha[100], cpf_aux[5];
+	char *result, *valor;
+
+	valor = (char*)malloc(200 * sizeof(char));
 
 	strcpy(pathCPF, "src/files/clientes-cpf.txt");
-	strcpy(linha, "src/files/clientes-original.txt");
-	strcpy(nome, "src/files/clientes.txt");
+	strcpy(pathDados, "src/files/clientes-original.txt");
+	strcpy(pathClientes, "src/files/clientes.txt");
 
-	file = fopen(linha, "r");
-	fileClientes = fopen(nome, "w");
+	fileDados = fopen(pathDados, "r");
+	fileClientes = fopen(pathClientes, "w");
 	fileCPF = fopen(pathCPF, "r");
 
-	if(fileCPF == NULL) {
-		printf("Erro ao abrir arquivo de entrada\n");
+	if(fileClientes == NULL) {
+		printf("Erro ao abrir ou criar arquivo clientes.txt\n");
 		return;
 	} else {
-		while(!feof(fileCPF)) {
-			result = fgets(linha, 100, fileCPF);
+		if(fileCPF == NULL) {
+			printf("Erro ao abrir arquivo clientes-cpf.txt\n");
+			return;
+		} else {
+			while(!feof(fileCPF)) {
+				result = fgets(linha, sizeof(linha), fileCPF);
 
-			if(result) {
-				n = atoi(linha);
-				cpf[cont++] = n;
+				if(result)
+					cpf[cont++] = atoi(linha);
 			}
 		}
-	}
 
-	cont = 0;
-	if(file == NULL) {
-		printf("Erro ao abrir arquivo de entrada\n");
-		return;
-	} else {
-		while(!feof(file)) {
-			result = fgets(linha, 100, file);
+		cont = 0;
+		if(fileDados == NULL) {
+			printf("Erro ao abrir arquivo clientes-original.txt\n");
+			return;
+		} else {
+			while(!feof(fileDados)) {
+				result = fgets(linha, sizeof(linha), fileDados);
 
-			if(result) {
-				tokenizar(linha);
+				if(result) {
+					tokenizar(linha);
 
-				n = get_randomIdade();
-				sprintf(text, "%d", n);
+					sprintf(text, "%d", get_randomIdade());
 
-				strcat(linha, ",");
-				strcat(linha, text);
+					strcat(linha, ",");
+					strcat(linha, text);
 
-				sprintf(text, "%d", cpf[cont++]);
+					sprintf(text, "%d", cpf[cont++]);
+					strcpy(cpf_aux, text);
 
-				strcat(text, ",");
-				strcat(text, linha);
-				strcat(text, "\n");
+					if(controle) {
+						strcpy(cpf_aux, text);
+						fputs(strcat(cpf_aux, "-"), fileClientes);
 
-				fputs(text, fileClientes);
+						controle = FALSE;
+					}
+
+					strcat(text, ",");
+					strcat(valor, strcat(text, strcat(linha, "\n")));
+
+					if(cont % 10 == 0) {
+						strcat(nome, "...");
+						strcat(nome, cpf_aux);
+						fputs(strcat(cpf_aux, "\n"), fileClientes);
+
+						// writeFile(nome, valor);
+						valor = (char*)malloc(200 * sizeof(char));
+						// printf("\n");
+
+						controle = TRUE;
+					}
+				}
 			}
+			printf("cont: %d\n", cont);
 		}
-		printf("cont: %d\n", cont);
 	}
-	fclose(file);
+	fclose(fileDados);
 	fclose(fileClientes);
 	fclose(fileCPF);
+
+	free(valor);
+
+	free(pathCPF);
+	free(pathDados);
+	free(pathClientes);
 }
 
 void tokenizar(char *str) {
@@ -112,145 +164,3 @@ void tokenizar(char *str) {
 		tokens = strtok(NULL, sep);
 	}
 }
-
-// /**
-//  * @brief Realiza a leitura de um arquivo e faz a pesquisa
-//  * 
-//  * @param raizS ponteiro da arvore simples
-//  * @param raizAVL ponteiro da arvore AVL
-//  * @param raizRB ponteiro da arvore red black
-//  * @param tam valor do arquivo de entrada a ser aberto
-//  * @param tS ponteiro para o tempo da arvore simples
-//  * @param tAVL ponteiro para o tempo da arvore AVL
-//  * @param tRB ponteiro para o tempo da arvore rubro negra
-//  */
-// void readFileSearch(TreeS **raizS, TreeAVL **raizAVL, TreeRB **raizRB, int tam, double *tS, double *tAVL, double *tRB) {
-// 	FILE *fileS, *fileAVL, *fileRB;
-// 	TreeS *aux1;
-// 	TreeAVL *aux2;
-
-// 	clock_t time;
-
-// 	char linha[100];
-// 	char text[20];
-// 	char *result;
-
-// 	int cont;
-// 	double quantS, quantAVL, quantRB;
-
-// 	cont = quantS = quantAVL = quantRB = 0;
-	
-// 	sprintf(text, "%d", tam);
-// 	strcpy(linha, PATH_SEARCH);
-// 	strcat(linha, strcat(text, ".txt"));
-
-// 	fileS = fopen(linha, "r");
-// 	fileAVL = fopen(linha, "r");
-// 	fileRB = fopen(linha, "r");
-
-// 	if(fileS == NULL) {
-// 		printf("Erro ao abrir arquivo de pesquisa\n");
-// 		return;
-// 	} else {
-// 		Record r;
-		
-// 		time = clock();
-
-// 		while(!feof(fileS)) {
-// 			result = fgets(linha, 100, fileS);
-
-// 			if(result) {
-// 				r.key = atof(linha);
-// 				pesquisaS(raizS, &aux1, r, &quantS);
-// 				cont++;
-// 			}
-// 		}
-// 		*tS = ((clock() - time) / (double)CLOCKS_PER_SEC); // 1
-
-// 		time = clock();
-
-// 		while(!feof(fileAVL)) {
-// 			result = fgets(linha, 100, fileAVL);
-
-// 			if(result) {
-// 				r.key = atof(linha);
-// 				pesquisaAVL(raizAVL, &aux2, r, &quantAVL);
-// 				cont++;
-// 			}
-// 		}
-// 		*tAVL = ((clock() - time) / (double)CLOCKS_PER_SEC); // 2
-
-// 		time = clock();
-
-// 		while(!feof(fileRB)) {
-// 			result = fgets(linha, 100, fileRB);
-
-// 			if(result) {
-// 				r.key = atof(linha);
-// 				searchRB(*raizRB, r, &quantRB);
-// 				cont++;
-// 			}
-// 		}
-// 		*tRB = ((clock() - time) / (double)CLOCKS_PER_SEC); // 3
-// 	}
-// 	fclose(fileS);
-// 	fclose(fileAVL);
-// 	fclose(fileRB);
-	
-// 	printf("\n%d valores pesquisados\n\n", cont);
-// 	printf("(%.0lf) pesquisas realizadas arvore Simples\n", quantS);
-// 	printf("(%.0lf) pesquisas realizadas arvore AVL\n", quantAVL);
-// 	printf("(%.0lf) pesquisas realizadas arvore RB\n", quantRB);
-// }
-
-// /**
-//  * @brief Realiza a leitura de um arquivo de 1000000000 de entradas
-//  * este metodo nao deve ser utilizado, consome muito recurso
-//  * 
-//  * @param raizRB ponteiro da arvore red black
-//  * @param tempo ponteiro para o tempo de insercao
-//  */
-// void readFileInput1Bilhao(TreeRB **raizRB, double *tempo) {
-// 	FILE *file, *newFile;
-
-// 	clock_t time;
-
-// 	char linha[100];
-// 	char text[20];
-// 	char *result;
-
-// 	int cont = 0, contadorRP = 0;
-
-// 	sprintf(text, "%d", 1000000000);
-// 	strcpy(linha, PATH_INPUT);
-// 	strcat(linha, strcat(text, ".txt"));
-
-// 	file = fopen(linha, "r");
-// 	newFile = fopen("src/files/saida.txt", "w");
-
-// 	if(file == NULL) {
-// 		printf("Erro ao abrir arquivo de entrada\n");
-// 		return;
-// 	} else {
-// 		Record r;
-// 		time = clock();
-
-// 		while(!feof(file)) {
-// 			result = fgets(linha, 100, file);
-
-// 			if(result) {
-// 				r.key = atof(linha);
-// 				insertItemRBCorrecao(raizRB, r, &contadorRP, &cont);
-
-// 				sprintf(linha, "%.6lf", r.key);
-// 				strcat(linha, "\n");
-// 				fputs(linha, newFile);
-// 			}
-// 		}
-// 		*tempo = ((clock() - time) / (double)CLOCKS_PER_SEC);
-// 	}
-// 	printf("\n%d valores inseridos no total\n", cont);
-// 	printf("\n%d valores repetidos\n", contadorRP);
-	
-// 	fclose(file);
-// }
