@@ -9,16 +9,23 @@ void Pesquisa(Pagina *p, Record *r){
   short i = 1;
 
   if(p == NULL){
-    printf("[ERROR]: Node not found!");
+    printf("[ERROR]: Node (%d) not found!\n", r->key);
+    r->key = -1;
     return;
   }
 
   while (i < p->n && r->key > p->r[i-1].key) i++;
 
-  if (r->key == p->r[i-1].key){ 
-    *r = p->r[i-1];
+  if (r->key >= p->r[i-1].key && r->key <= p->r[i-1].limite) {
+    printf("%s\n", p->r[i-1].arquivo);
     return;
+    // if (r->key == p->r[i-1].key){ 
+    //   *r = p->r[i-1];
+    //   return;
+    // }
   }
+
+  
 
   if (r->key < p->r[i-1].key) 
     Pesquisa(p->p[i-1], r);
@@ -115,6 +122,14 @@ void Insere(Pagina **p, Record r){
   short Overflow;
   Record rr;
   Pagina *pr, *paux;
+
+  char *start = (char*)malloc(20 * sizeof(char));
+  char *end = (char*)malloc(20 * sizeof(char));
+
+  sprintf(start, "%d", r.key);
+  sprintf(end, "%d", r.limite);
+  strcpy(r.arquivo, strcat(start, "..."));
+  strcat(r.arquivo, end);
 
   //p = raiz
   //pr = ponteiro de ligação quando estoura
@@ -284,7 +299,7 @@ void Imprime(Pagina **p, int level){
   
   printf("Nivel %d: ", level);
   for (i = 0; i < (*p)->n; i++)
-    printf("(%d : %d) ",(*p)->r[i].key, (*p)->r[i].limite);
+    printf("(%d) -> [%s] ",(*p)->r[i].key, (*p)->r[i].arquivo);
   putchar('\n');
   level++;
 

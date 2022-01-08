@@ -3,6 +3,7 @@
 
 #include <stdlib.h>
 #include <stdio.h>
+#include <string.h>
 
 #define M 1
 #define MM (M * 2 + 1)
@@ -16,6 +17,7 @@ typedef struct Pagina Pagina;
 struct Record {
   int key;
   int limite;
+  char *arquivo;
 };
 
 struct Pagina {

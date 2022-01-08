@@ -137,9 +137,9 @@ void readFileIntervalo(Pagina **p) {
 	FILE *file;
 	char *path = (char*)malloc(50 * sizeof(char));
 
-	char *result, linha[100];
+	char *result, linha[100], text[10];
 	Record r;
-	int aux = TRUE, controle, chave;
+	int aux = TRUE;
 
 	strcpy(path, "src/files/clientes-intervalo.txt");
 
@@ -151,26 +151,18 @@ void readFileIntervalo(Pagina **p) {
 	} else {
 		while(!feof(file)) {
 			result = fgets(linha, sizeof(linha), file);
-			controle = FALSE;
 
 			if(result) {
 				if(aux) {
 					r.key = atoi(linha);
-					chave = r.key;
 					aux = FALSE;
 				} else {
 					r.limite = atoi(linha);
-					
+					r.arquivo = (char*)malloc(20 * sizeof(char));					
 					Insere(p, r);
 
 					aux = TRUE;
-					controle = TRUE;
 				}
-			}
-			if(controle) {
-				r.key = atoi(linha);
-				r.limite = chave;
-				Insere(p, r);
 			}
 		}
 	}
