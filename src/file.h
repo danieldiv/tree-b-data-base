@@ -2,8 +2,8 @@
 #define FILE_H
 
 #include "lista.h"
+#include "btree.h"
 
-#define PATH_INPUT "src/files/input"
 #define PATH_CLIENTES "src/files/clientes/"
 
 #define TRUE 1
@@ -11,6 +11,7 @@
 
 void writeFile(int start, int end, char *valor);
 void readFileConcat(Lista *lista);
+void readFileIntervalo(Pagina **p);
 
 void tokenizar(char *str);
 

@@ -2,6 +2,7 @@
     "files.associations": {
         "string.h": "c",
         "file.h": "c",
-        "stdio.h": "c"
+        "stdio.h": "c",
+        "btree.h": "c"
     }
 }

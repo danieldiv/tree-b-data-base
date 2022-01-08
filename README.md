@@ -20,4 +20,4 @@
 
 ## Criacao dos arquivos
 
-<!-- - E criado um arquivo .txt nao controlado quando os arquivos de intervalo sao criados, nao sei como remover  -->
+- Ao executar a opcao XXX e feita a leitura do arquivo "clientes-cpf.txt", "clientes-original.txt" e a criacao caso nao exista do arquivo "clientes-intervalo.txt".

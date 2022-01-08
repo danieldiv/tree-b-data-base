@@ -39,6 +39,7 @@ void writeFile(int start, int end, char *valor) {
 void readFileConcat(Lista *lista) {
 	FILE *fileDados;
 	FILE *fileCPF;
+	FILE *fileIntervalo;
 
 	Item item;
 	item.valor = (char*)malloc(200 * sizeof(char));
@@ -48,73 +49,134 @@ void readFileConcat(Lista *lista) {
 
 	int controle = TRUE;
 
-	char *pathCPF = (char*)malloc(strlen("src/files/clientes-cpf.txt") * sizeof(char));
-	char *pathDados = (char*)malloc(strlen("src/files/clientes-original.txt") * sizeof(char));
+	char *pathCPF = (char*)malloc(50 * sizeof(char));
+	char *pathDados = (char*)malloc(50 * sizeof(char));
+	char *pathIntervalo = (char*)malloc(50 * sizeof(char));
 
-	char text[100], linha[100];
+	char text[100], linha[100], intervalo[10];
 	char *result;
 
 	strcpy(pathCPF, "src/files/clientes-cpf.txt");
 	strcpy(pathDados, "src/files/clientes-original.txt");
+	strcpy(pathIntervalo, "src/files/clientes-intervalo.txt");
 
 	fileDados = fopen(pathDados, "r");
 	fileCPF = fopen(pathCPF, "r");
+	fileIntervalo = fopen(pathIntervalo, "w");
 
-	if(fileCPF == NULL) {
-		printf("Erro ao abrir arquivo clientes-cpf.txt\n");
+	if(fileIntervalo == NULL) {
+		printf("Erro ao abrir arquivo clientes-intervalo.txt\n");
 		return;
-	} else {
-		while(!feof(fileCPF)) {
-			result = fgets(linha, sizeof(linha), fileCPF);
-
-			if(result)
-				cpf[cont++] = atoi(linha);
-		}
 	}
+	else {
+		if(fileCPF == NULL) {
+			printf("Erro ao abrir arquivo clientes-cpf.txt\n");
+			return;
+		} else {
+			while(!feof(fileCPF)) {
+				result = fgets(linha, sizeof(linha), fileCPF);
 
-	cont = 0;
-	if(fileDados == NULL) {
-		printf("Erro ao abrir arquivo clientes-original.txt\n");
-		return;
-	} else {
-		while(!feof(fileDados)) {
-			result = fgets(linha, sizeof(linha), fileDados);
-
-			if(result) {
-				tokenizar(linha);
-
-				sprintf(text, "%d", get_randomIdade());
-
-				strcat(linha, ",");
-				strcat(linha, text);
-
-				sprintf(text, "%d", cpf[cont++]);
-
-				if(controle) {
-					item.cpfStart = cpf[cont-1];
-					controle = FALSE;
-				}
-
-				strcat(text, ",");
-				strcat(item.valor, strcat(text, strcat(linha, "\n")));
-
-				if(cont % 10 == 0) {
-					item.cpfEnd = cpf[cont-1];
-
-					LInsere(lista, item);
-
-					item.valor = (char*)malloc(200 * sizeof(char));
-					controle = TRUE;
-				}
+				if(result)
+					cpf[cont++] = atoi(linha);
 			}
 		}
-		printf("cont: %d\n", cont);
+
+		cont = 0;
+		if(fileDados == NULL) {
+			printf("Erro ao abrir arquivo clientes-original.txt\n");
+			return;
+		} else {
+			while(!feof(fileDados)) {
+				result = fgets(linha, sizeof(linha), fileDados);
+
+				if(result) {
+					tokenizar(linha);
+
+					sprintf(text, "%d", get_randomIdade());
+
+					strcat(linha, ",");
+					strcat(linha, text);
+
+					sprintf(text, "%d", cpf[cont++]);
+					strcpy(intervalo, text);
+
+					if(controle) {
+						item.cpfStart = cpf[cont-1];
+						controle = FALSE;
+						
+						fputs(strcat(intervalo, "\n"), fileIntervalo);
+					}
+
+					strcat(text, ",");
+					strcat(item.valor, strcat(text, strcat(linha, "\n")));
+
+					if(cont % 10 == 0) {
+						item.cpfEnd = cpf[cont-1];
+
+						LInsere(lista, item);
+						fputs(strcat(intervalo, "\n"), fileIntervalo);
+
+						item.valor = (char*)malloc(200 * sizeof(char));
+						controle = TRUE;
+					}
+				}
+			}
+			printf("cont: %d\n", cont);
+		}
 	}
 	fclose(fileDados);
 	fclose(fileCPF);
+	fclose(fileIntervalo);
 
 	free(pathCPF);
 	free(pathDados);
+	free(pathIntervalo);
+}
+
+void readFileIntervalo(Pagina **p) {
+	FILE *file;
+	char *path = (char*)malloc(50 * sizeof(char));
+
+	char *result, linha[100];
+	Record r;
+	int aux = TRUE, controle, chave;
+
+	strcpy(path, "src/files/clientes-intervalo.txt");
+
+	file = fopen(path, "r");
+
+	if(file == NULL) {
+		printf("Nao foi possivel abrir o arquivo clientes-intervalo.txt\n");
+		return;
+	} else {
+		while(!feof(file)) {
+			result = fgets(linha, sizeof(linha), file);
+			controle = FALSE;
+
+			if(result) {
+				if(aux) {
+					r.key = atoi(linha);
+					chave = r.key;
+					aux = FALSE;
+				} else {
+					r.limite = atoi(linha);
+					
+					Insere(p, r);
+
+					aux = TRUE;
+					controle = TRUE;
+				}
+			}
+			if(controle) {
+				r.key = atoi(linha);
+				r.limite = chave;
+				Insere(p, r);
+			}
+		}
+	}
+
+	fclose(file);
+	free(path);
 }
 
 void tokenizar(char *str) {
