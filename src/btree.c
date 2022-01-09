@@ -14,18 +14,18 @@ void Pesquisa(Pagina *p, Record *r){
     return;
   }
 
-  while (i < p->n && r->key > p->r[i-1].key) i++;
-
-  if (r->key >= p->r[i-1].key && r->key <= p->r[i-1].limite) {
-    printf("%s\n", p->r[i-1].arquivo);
-    return;
-    // if (r->key == p->r[i-1].key){ 
-    //   *r = p->r[i-1];
-    //   return;
-    // }
+  while (i < p->n && r->key > p->r[i-1].key) {
+    if(r->key <= p->r[i-1].limite)
+      break;
+    i++;
   }
 
-  
+  if (r->key >= p->r[i-1].key) {
+    if(r->key <= p->r[i-1].limite) {
+      *r = p->r[i-1];
+      return;
+    }
+  }
 
   if (r->key < p->r[i-1].key) 
     Pesquisa(p->p[i-1], r);

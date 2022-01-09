@@ -6,6 +6,15 @@ int main() {
 
 	Pagina *p;
 	Record r;
+	Cliente c;
+
+	int aux;
+	int valor;
+	
+	// valor = 8930;
+	// valor = 8873;
+	// valor = 8882;
+	valor = 8931;
 
 	p = CreateBTree();
 	
@@ -13,11 +22,25 @@ int main() {
 	readFileIntervalo(&p);
 	// Imprime(&p, 0);
 
-	for(int i=8136; i <= 8195; i++) {
-		r.key = i;
+	// for(valor=8873; valor <= 8930; valor++) {
+		r.key = valor;
 		Pesquisa(p, &r);
-	}
-	// printf("r: %d\n", r.key);
+
+		if(!(r.key == -1)) {
+			c.cpf = valor;
+			aux = FALSE;
+
+			readFileClientes(r, &c, &aux);
+
+			if(aux) {
+				printf("\nCliente: %s\n", c.nome);
+				printf("Idade: %d\n", c.idade);
+				printf("CPF: %d\n\n", c.cpf);
+			} else {
+				printf("O cpf (%d) nao foi encontrado na lista de clientes!\n", c.cpf);
+			}
+		}
+	// }
 
 	
 	// Item item;
