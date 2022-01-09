@@ -28,7 +28,7 @@ void writeFile(int start, int end, char *valor) {
 	file = fopen(path, "w");
 
 	if(file == NULL) {
-		printf("Nao foi possivel abrir o arquivo c1\n");
+		printf("Nao foi possivel abrir o arquivo %s\n", aux_start);
 		return;
 	} else {
 		fputs(valor, file);
@@ -121,7 +121,7 @@ void readFileConcat(Lista *lista) {
 					}
 				}
 			}
-			printf("cont: %d\n", cont);
+			// printf("cont: %d\n", cont);
 		}
 	}
 	fclose(fileDados);

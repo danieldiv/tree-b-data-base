@@ -3,6 +3,8 @@
         "string.h": "c",
         "file.h": "c",
         "stdio.h": "c",
-        "btree.h": "c"
+        "btree.h": "c",
+        "lista.h": "c",
+        "stdlib.h": "c"
     }
 }
