@@ -135,7 +135,6 @@ int main() {
 							nome = (char*)malloc(20 * sizeof(char));
 							sprintf(nome, "%d,Nome%d,%d\n", valor, get_randomIdade(), get_randomIdade());
 
-
 							c.cpf = valor;
 							aux = FALSE;
 

@@ -10,6 +10,10 @@
 
 typedef struct Cliente Cliente;
 
+/**
+ * Struct utilizado para armazenar o cliente com suas informacoes
+ * 
+ */
 struct Cliente {
     int cpf;
     int idade;
