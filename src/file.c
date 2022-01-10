@@ -137,7 +137,7 @@ void readFileIntervalo(Pagina **p) {
 	FILE *file;
 	char *path = (char*)malloc(50 * sizeof(char));
 
-	char *result, linha[100], text[10];
+	char *result, linha[100];
 	Record r;
 	int aux = TRUE;
 

@@ -8,18 +8,14 @@ int menu();
 
 int main() {
 
-	char str[20];
-
 	Lista l;
 	FLVazia(&l);
 
 	readFileConcat(&l);
 	createFile(&l);
 
-	FILE *file;
-
 	char *path = (char*)malloc(50 * sizeof(char));
-	char *result, linha[100], text[10];
+	char *result;
 	char *nome;
 
 	Pagina *p;
@@ -29,7 +25,6 @@ int main() {
 	int aux;
 	int valor;
 	int op;
-	int idade;
 
 	p = CreateBTree();
 
@@ -202,7 +197,6 @@ int menu() {
 
 void createFile(Lista *l) {
     Block *aux;
-    char str[20];
 
 	aux = l->first->prox;
 	while(aux != NULL) {
