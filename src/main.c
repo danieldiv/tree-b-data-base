@@ -12,22 +12,15 @@ int main() {
 
 	Lista l;
 	FLVazia(&l);
+	char *teste;
 
 	readFileConcat(&l);
 	createFile(&l);
-
-	//========================
 
 	FILE *file;
 	char *path = (char*)malloc(50 * sizeof(char));
 
 	char *result, linha[100], text[10];
-	// Record r;
-	// int aux = TRUE;
-
-	
-
-	// =========================
 
 	Pagina *p;
 	Record r;
@@ -35,10 +28,9 @@ int main() {
 
 	int aux;
 	int valor;
+	int op;
 
 	p = CreateBTree();
-
-	int op;
 
 	do {
 		system("clear");
@@ -64,17 +56,22 @@ int main() {
 					Pesquisa(p, &r);
 
 					if(!(r.key == -1)) {
-						c.cpf = valor;
-						aux = FALSE;
+						if(get_quantClientes(r.arquivo) == 0)
+							printf("O arquivo %s nao possui clientes cadastrados!\n", r.arquivo);
+						else {
+							c.cpf = valor;
+							aux = FALSE;
 
-						readFileClientes(r, &c, &aux);
+							result = (char*)malloc(200*sizeof(char));
+							readFileClientes(&r, &c, &aux, result);
 
-						if(aux) {
-							printf("Cliente: %s\n", c.nome);
-							printf("Idade: %d\n", c.idade);
-							printf("CPF: %d\n", c.cpf);
-						} else {
-							printf("O cpf (%d) nao foi encontrado na lista de clientes!\n", c.cpf);
+							if(aux) {
+								printf("Cliente: %s\n", c.nome);
+								printf("Idade: %d\n", c.idade);
+								printf("CPF: %d\n", c.cpf);
+							} else {
+								printf("O cpf (%d) nao foi encontrado na lista de clientes!\n", c.cpf);
+							}
 						}
 					}
 				}
@@ -94,17 +91,30 @@ int main() {
 					Pesquisa(p, &r);
 
 					if(!(r.key == -1)) {
-						c.cpf = valor;
-						aux = FALSE;
+						if(get_quantClientes(r.arquivo) == 0)
+							printf("O arquivo %s nao possui clientes cadastrados!\n", r.arquivo);
+						else {
+							c.cpf = valor;
+							aux = FALSE;
 
-						readFileClientes(r, &c, &aux);
+							result = (char*)malloc(200*sizeof(char));
+							readFileClientes(&r, &c, &aux, result);
 
-						if(aux) {
-							printf("Cliente: %s\n", c.nome);
-							printf("Idade: %d\n", c.idade);
-							printf("CPF: %d\n", c.cpf);
-						} else {
-							printf("O cpf (%d) nao foi encontrado na lista de clientes!\n", c.cpf);
+							sprintf(path, "src/files/clientes/%d...%d.txt", r.key, r.limite);
+							remove(path);
+
+							writeFile(r.key, r.limite, result);
+							r.quant = get_quantClientes(r.arquivo);
+
+							if(aux) {
+								printf("Cliente: %s\n", c.nome);
+								printf("Idade: %d\n", c.idade);
+								printf("CPF: %d\n", c.cpf);
+								printf("\nO cliente com as informacoes acima foi excluido!\n");
+								printf("A quantidade de clientes dentro do arquivo (%s.txt) foi reduzido para: %d\n", r.arquivo, r.quant);
+							} else {
+								printf("O cpf (%d) nao foi encontrado na lista de clientes!\n", c.cpf);
+							}
 						}
 					}
 				}

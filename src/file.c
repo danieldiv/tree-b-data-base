@@ -171,35 +171,74 @@ void readFileIntervalo(Pagina **p) {
 	free(path);
 }
 
-void readFileClientes(Record r, Cliente *c, int *aux) {
+void readFileClientes(Record *r, Cliente *c, int *aux, char *clientes) {
 	FILE *file;
+
 	char *path = (char*)malloc(50 * sizeof(char));
+	char *str = (char*)malloc(50 * sizeof(char));
 	c->nome = (char*)malloc(20 * sizeof(char));
 
 	char *result, linha[100];
+	int controle = TRUE;
 
 	strcpy(path, PATH_CLIENTES);
-	strcat(path, r.arquivo);
+	strcat(path, r->arquivo);
 	strcat(path, ".txt");
 
 	file = fopen(path, "r");
+	strcpy(clientes, "");
 
 	if(file == NULL) {
-		printf("Nao foi possivel abrir o arquivo %s!\n", r.arquivo);
+		printf("Nao foi possivel abrir o arquivo %s!\n", r->arquivo);
 		return;
 	} else {
 		while(!feof(file)) {
 			result = fgets(linha, sizeof(linha), file);
 
 			if(result) {
-				tokenizarClientes(linha, c, aux);
-				if(*aux) return;
+				strcpy(str, linha);
+				
+				if(!(*aux))
+					tokenizarClientes(linha, c, aux, &controle);
+				if(controle)
+					strcat(clientes, str);
+				else
+					controle = TRUE;
 			}
 		}
 	}
-
 	fclose(file);
 	free(path);
+}
+
+int get_quantClientes(char *arquivo) {
+	FILE *file;
+
+	char *path = (char*)malloc(50 * sizeof(char));
+
+	char *result, linha[100];
+	int quant = 0;
+
+	strcpy(path, PATH_CLIENTES);
+	strcat(path, arquivo);
+	strcat(path, ".txt");
+
+	file = fopen(path, "r");
+
+	if(file == NULL) {
+		printf("Nao foi possivel abrir o arquivo %s!\n", path);
+		return -1;
+	} else {
+		while(!feof(file)) {
+			result = fgets(linha, sizeof(linha), file);
+
+			if(result)
+				quant++;
+		}
+	}
+	fclose(file);
+
+	return quant;
 }
 
 void tokenizar(char *str) {
@@ -219,7 +258,7 @@ void tokenizar(char *str) {
 	}
 }
 
-void tokenizarClientes(char *str, Cliente *c, int *aux) {
+void tokenizarClientes(char *str, Cliente *c, int *aux, int *remover) {
 	const char sep[] = ",";
 	char *tokens;
 
@@ -233,6 +272,7 @@ void tokenizarClientes(char *str, Cliente *c, int *aux) {
 				*aux = FALSE;
 				return;
 			}
+			*remover = FALSE;
 			*aux = TRUE;
 		} else if(controle == 1) {
 			strcpy(c->nome, tokens);
@@ -243,3 +283,32 @@ void tokenizarClientes(char *str, Cliente *c, int *aux) {
 		tokens = strtok(NULL, sep);
 	}
 }
+
+// int get_quantClientes(char *path) {
+// 	FILE *file;
+// 	// char *path = (char*)malloc(50 * sizeof(char));
+
+// 	char *result, linha[100];
+// 	int quant = 0;
+
+// 	// strcpy(path, r->arquivo);
+// 	// strcat(path, strcat(r->arquivo, ".txt"));
+
+// 	file = fopen(path, "r");
+
+// 	if(file == NULL) {
+// 		printf("Nao foi possivel abrir o arquivo %s!\n", path);
+// 		return -1;
+// 	} else {
+// 		while(!feof(file)) {
+// 			result = fgets(linha, sizeof(linha), file);
+
+// 			if(result)
+// 				quant++;
+// 		}
+// 	}
+// 	fclose(file);
+// 	free(path);
+
+// 	return 1;
+// }

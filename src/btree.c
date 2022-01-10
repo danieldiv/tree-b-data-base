@@ -15,8 +15,10 @@ void Pesquisa(Pagina *p, Record *r){
   }
 
   while (i < p->n && r->key > p->r[i-1].key) {
-    if(r->key <= p->r[i-1].limite)
-      break;
+    if(r->key <= p->r[i-1].limite) {
+      return;
+    }
+      
     i++;
   }
 

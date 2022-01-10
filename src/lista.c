@@ -18,7 +18,8 @@ void Limprime(Lista *l) {
 
 	aux = l->first->prox;
 	while(aux != NULL) {
-		printf("%d...%d\n%s\n", aux->dado.cpfStart, aux->dado.cpfEnd, aux->dado.valor);
+		// printf("%d...%d\n%s\n", aux->dado.cpfStart, aux->dado.cpfEnd, aux->dado.valor);
+		printf("%s", aux->dado.valor);
 		aux = aux->prox;
 	}
 }

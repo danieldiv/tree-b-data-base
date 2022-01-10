@@ -21,12 +21,13 @@ void writeFile(int start, int end, char *valor);
 
 void readFileConcat(Lista *lista);
 void readFileIntervalo(Pagina **p);
-void readFileClientes(Record r, Cliente *c, int *aux);
+void readFileClientes(Record *r, Cliente *c, int *aux, char *clientes);
 
 void tokenizar(char *str);
-void tokenizarClientes(char *str, Cliente *c, int *aux);
+void tokenizarClientes(char *str, Cliente *c, int *aux, int *remover);
 
 int get_random();
 int get_randomIdade();
+int get_quantClientes(char *arquivo);
 
 #endif

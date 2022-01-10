@@ -18,6 +18,7 @@ struct Record {
   int key;
   int limite;
   char *arquivo;
+  int quant;
 };
 
 struct Pagina {
