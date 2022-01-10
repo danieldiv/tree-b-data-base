@@ -171,7 +171,7 @@ void readFileIntervalo(Pagina **p) {
 	free(path);
 }
 
-void readFileClientes(Record *r, Cliente *c, int *aux, char *clientes) {
+void readFileClientes(Record *r, Cliente *c, int *aux, char *clientes, char *nome, int valorInsert) {
 	FILE *file;
 
 	char *path = (char*)malloc(50 * sizeof(char));
@@ -179,7 +179,8 @@ void readFileClientes(Record *r, Cliente *c, int *aux, char *clientes) {
 	c->nome = (char*)malloc(20 * sizeof(char));
 
 	char *result, linha[100];
-	int controle = TRUE;
+	int controle = TRUE, nomeAdicionado = TRUE;
+	int cpf = 0;
 
 	strcpy(path, PATH_CLIENTES);
 	strcat(path, r->arquivo);
@@ -199,10 +200,16 @@ void readFileClientes(Record *r, Cliente *c, int *aux, char *clientes) {
 				strcpy(str, linha);
 				
 				if(!(*aux))
-					tokenizarClientes(linha, c, aux, &controle);
-				if(controle)
+					tokenizarClientes(linha, c, aux, &controle, &cpf);
+				if(controle) {
+					if(valorInsert < cpf && nomeAdicionado) {
+						strcat(clientes, nome);
+						nomeAdicionado = FALSE;
+					}
 					strcat(clientes, str);
-				else
+				}
+					
+				else 
 					controle = TRUE;
 			}
 		}
@@ -257,58 +264,3 @@ void tokenizar(char *str) {
 		tokens = strtok(NULL, sep);
 	}
 }
-
-void tokenizarClientes(char *str, Cliente *c, int *aux, int *remover) {
-	const char sep[] = ",";
-	char *tokens;
-
-	int controle = 0;
-	
-	tokens = strtok(str, sep);
-	
-	while(tokens != NULL) {
-		if(controle == 0) {
-			if((atoi(tokens) != c->cpf)) {
-				*aux = FALSE;
-				return;
-			}
-			*remover = FALSE;
-			*aux = TRUE;
-		} else if(controle == 1) {
-			strcpy(c->nome, tokens);
-		} else if(controle == 2) {
-			c->idade = atoi(tokens);
-		}
-		controle++;
-		tokens = strtok(NULL, sep);
-	}
-}
-
-// int get_quantClientes(char *path) {
-// 	FILE *file;
-// 	// char *path = (char*)malloc(50 * sizeof(char));
-
-// 	char *result, linha[100];
-// 	int quant = 0;
-
-// 	// strcpy(path, r->arquivo);
-// 	// strcat(path, strcat(r->arquivo, ".txt"));
-
-// 	file = fopen(path, "r");
-
-// 	if(file == NULL) {
-// 		printf("Nao foi possivel abrir o arquivo %s!\n", path);
-// 		return -1;
-// 	} else {
-// 		while(!feof(file)) {
-// 			result = fgets(linha, sizeof(linha), file);
-
-// 			if(result)
-// 				quant++;
-// 		}
-// 	}
-// 	fclose(file);
-// 	free(path);
-
-// 	return 1;
-// }

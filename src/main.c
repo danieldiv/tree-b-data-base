@@ -1,26 +1,26 @@
 #include "file.h"
 
-#include <sys/stat.h>
-#include <unistd.h>
-
-#define DIRETORIO "./teste"
+// #include <sys/stat.h>
+// #include <unistd.h>
 
 void createFile(Lista *l);
 int menu();
 
 int main() {
 
+	char str[20];
+
 	Lista l;
 	FLVazia(&l);
-	char *teste;
 
 	readFileConcat(&l);
 	createFile(&l);
 
 	FILE *file;
-	char *path = (char*)malloc(50 * sizeof(char));
 
+	char *path = (char*)malloc(50 * sizeof(char));
 	char *result, linha[100], text[10];
+	char *nome;
 
 	Pagina *p;
 	Record r;
@@ -29,6 +29,7 @@ int main() {
 	int aux;
 	int valor;
 	int op;
+	int idade;
 
 	p = CreateBTree();
 
@@ -63,7 +64,10 @@ int main() {
 							aux = FALSE;
 
 							result = (char*)malloc(200*sizeof(char));
-							readFileClientes(&r, &c, &aux, result);
+							nome = (char*)malloc(sizeof(char));
+							strcpy(nome, "");
+							
+							readFileClientes(&r, &c, &aux, result, nome, -1);
 
 							if(aux) {
 								printf("Cliente: %s\n", c.nome);
@@ -76,10 +80,6 @@ int main() {
 					}
 				}
 			break;
-			// case 3:
-				// remove("src/files/teste.txt");
-				// remove("src/files/clientes/1016...1084.txt");
-			// break;
 			case 3:
 				if(p == NULL)
 					printf("Arvore B vazia!\n");
@@ -98,7 +98,10 @@ int main() {
 							aux = FALSE;
 
 							result = (char*)malloc(200*sizeof(char));
-							readFileClientes(&r, &c, &aux, result);
+							nome = (char*)malloc(sizeof(char));
+							strcpy(nome, "");
+
+							readFileClientes(&r, &c, &aux, result, nome, -1);
 
 							sprintf(path, "src/files/clientes/%d...%d.txt", r.key, r.limite);
 							remove(path);
@@ -118,28 +121,47 @@ int main() {
 						}
 					}
 				}
-				// strcpy(path, "src/files/teste.txt");
+			break;
+			case 4:
+				if(p == NULL)
+					printf("Arvore B vazia!\n");
+				else {
+					printf("Informe o valor do CPF para inserir: ");
+					scanf("%d", &valor);
+					fflush(stdin);
 
-				// file = fopen(path, "w");
+					r.key = valor;
+					Pesquisa(p, &r);
 
-				// if(file == NULL) {
-				// 	printf("Nao foi possivel abrir o arquivo teste.txt\n");
-				// 	// return;
-				// } 
-				// else {
-				// 	while(!feof(file)) {
-				// 		result = fgets(linha, sizeof(linha), file);
-				// 		printf("teste\n");
-				// 		if(result) {
-				// 			printf("teste\n");
-				// 		} else {
-				// 			break;
-				// 		}
-				// 	}
-				// }
+					if(!(r.key == -1)) {
+						if(get_quantClientes(r.arquivo) == 10)
+							printf("O arquivo (%s.txt) atingiu o limite maximo de clientes cadastrados!\n", r.arquivo);
+						else {
+							nome = (char*)malloc(20 * sizeof(char));
+							sprintf(nome, "%d,Nome%d,%d\n", valor, get_randomIdade(), get_randomIdade());
 
-				// fclose(file);
-				// free(path);
+
+							c.cpf = valor;
+							aux = FALSE;
+
+							result = (char*)malloc(200*sizeof(char));
+							readFileClientes(&r, &c, &aux, result, nome, valor);
+
+							sprintf(path, "src/files/clientes/%d...%d.txt", r.key, r.limite);
+							remove(path);
+
+							writeFile(r.key, r.limite, result);
+							r.quant = get_quantClientes(r.arquivo);
+
+							if(!aux) {
+								printf("O cpf (%d) foi adicionado na lista de clientes!\n", c.cpf);
+								printf("A quantidade de clientes dentro do arquivo (%s.txt) foi aumentado para: %d\n", r.arquivo, r.quant);
+							} else {
+								printf("O cpf (%d) ja existe na lista de clientes!\n", c.cpf);
+							}
+						}
+					}
+				}
 			break;
 			case 0:
 				printf("O programa sera finalizado!\n");
@@ -169,6 +191,7 @@ int menu() {
 	printf("1 - Incializar arvore\n");
 	printf("2 - Pesquisar Cliente\n");
 	printf("3 - Remover Cliente\n");
+	printf("4 - Inserir Cliente\n");
 	printf("0 - Sair\n\n");
 
 	printf("Escolha uma opção: ");

@@ -3,28 +3,17 @@
 
 #include "lista.h"
 #include "btree.h"
+#include "cliente.h"
 
 #define PATH_CLIENTES "src/files/clientes/"
-
-#define TRUE 1
-#define FALSE 0
-
-typedef struct Cliente Cliente;
-
-struct Cliente {
-    int cpf;
-    int idade;
-    char *nome;
-};
 
 void writeFile(int start, int end, char *valor);
 
 void readFileConcat(Lista *lista);
 void readFileIntervalo(Pagina **p);
-void readFileClientes(Record *r, Cliente *c, int *aux, char *clientes);
+void readFileClientes(Record *r, Cliente *c, int *aux, char *clientes, char *nome, int valorInsert);
 
 void tokenizar(char *str);
-void tokenizarClientes(char *str, Cliente *c, int *aux, int *remover);
 
 int get_random();
 int get_randomIdade();
