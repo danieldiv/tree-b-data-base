@@ -23,3 +23,7 @@
 - Ao executar a opcao XXX e feita a leitura do arquivo "clientes-cpf.txt", "clientes-original.txt" e a criacao caso nao exista do arquivo "clientes-intervalo.txt".
 
 - Caso a pasta clientes esteja vazia, descomente as linhas 16 e 17 para criacao dos arquivos.
+
+## Remocao de cliente
+
+- A remocao e feita removendo o arquivo para cria-lo novamente sem o cliente excluido
