@@ -25,13 +25,13 @@
 
 ## Remocao de cliente
 
-- A remocao e feita removendo o arquivo para cria-lo novamente sem o cliente excluido
+- A remocao e feita removendo o arquivo para cria-lo novamente sem o cliente que foi excluido
 
 ## Insersao
 
 - Para inserir valores e necessario que a arvore esteja preenchida inicialmente. O cliente so pode ser inserido nos intervalos disponiveis. O limite de valores em cada arquivo e de 10 clientes, o limite maximo e de 1000 clientes.
 
-- A leitura de string dentro do swtich nao funcionou corretamente, logo nome e estatico com um numero aleaotrio na frente
+- A leitura de string dentro do swtich nao funcionou corretamente, logo o nome e estatico com um numero aleaotrio na frente seguido da idade.
 
 ## Informacoes
 
