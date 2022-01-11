@@ -30,7 +30,15 @@
   - Em seguida a arvore B e criada com informacoes presentes no arquivo clientes-original.txt
 
   - No menu de opcoes a 5 caminho para percorrer:
-    - Escolhendo a insercao dos na arvore, sera verificado se a arvore esteja vazia, caso seja falso, retorna para o menu, caso verdadeiro, inserir na arvore e retorna ao menu.
+    - Escolhendo a insercao dos dados na arvore, sera verificado se a arvore esta vazia, caso seja verdadeiro, retorna para o menu, caso falso, inserir na arvore e retorna ao menu.
+
+    - Escolhendo a opcao Pesquisa de cliente, verifica se a arvore esta vazia, caso seja verdadeiro, retorna para o menu, caso falso, realiza a pesquisa do cliente e imprime o resultado caso encontre, em seguida retorna ao menu.
+
+    - Escolhendo a opcao de Excluir cliente, verifica se a arvore esta vazia, caso seja verdadeiro, retorna para o menu, caso falso, realiza a pesquisa do cliente para exclusao e remove o valor do arquivo caso encontre, em seguida retorna ao menu.
+
+    - Escolhendo a opcao de Adicionar cliente, verifica se a arvore esta vazia, caso seja verdadeiro, retorna para o menu, caso falso, verifica se o cpf do cliente que sera inserido existe no arquivo, caso verdadeiro, retorna ao menu, caso falso, realiza a insercao do valor no arquivo, em seguida retorna ao menu.
+
+    - A opcao de sair finaliza a aplicacao.
 
 ![Scrennshot](src/files/diagrama-estado.png)
 
