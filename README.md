@@ -44,15 +44,13 @@
 
 ## Base de dados
 
-- A base de dados com o nome pode ser encontrada em:
+- A base de dados com o nome pode ser encontrada no link abaixo na opcao download:
 
   - https://basedosdados.org/dataset/br-ibge-nomes-brasil
 
 ## Criacao dos arquivos
 
 - Ao executar o odigo e feita a leitura do arquivo "clientes-cpf.txt", "clientes-original.txt" e a criacao caso nao exista do arquivo "clientes-intervalo.txt".
-
-- Caso a pasta clientes esteja vazia, descomente as linhas 16 e 17 para criacao dos arquivos.
 
 ## Remocao de cliente
 
