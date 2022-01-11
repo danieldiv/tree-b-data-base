@@ -30,15 +30,15 @@
   - Em seguida a arvore B e criada com informacoes presentes no arquivo clientes-original.txt
 
   - No menu de opcoes a 5 caminho para percorrer:
-    - Escolhendo a insercao dos dados na arvore, sera verificado se a arvore esta vazia, caso seja verdadeiro, retorna para o menu, caso falso, inserir na arvore e retorna ao menu.
+  - Escolhendo a insercao dos dados na arvore, sera verificado se a arvore esta vazia, caso seja verdadeiro, retorna para o menu, caso falso, inserir na arvore e retorna ao menu.
 
-    - Escolhendo a opcao Pesquisa de cliente, verifica se a arvore esta vazia, caso seja verdadeiro, retorna para o menu, caso falso, realiza a pesquisa do cliente e imprime o resultado caso encontre, em seguida retorna ao menu.
+  - Escolhendo a opcao Pesquisa de cliente, verifica se a arvore esta vazia, caso seja verdadeiro, retorna para o menu, caso falso, realiza a pesquisa do cliente e imprime o resultado caso encontre, em seguida retorna ao menu.
 
-    - Escolhendo a opcao de Excluir cliente, verifica se a arvore esta vazia, caso seja verdadeiro, retorna para o menu, caso falso, realiza a pesquisa do cliente para exclusao e remove o valor do arquivo caso encontre, em seguida retorna ao menu.
+  - Escolhendo a opcao de Excluir cliente, verifica se a arvore esta vazia, caso seja verdadeiro, retorna para o menu, caso falso, realiza a pesquisa do cliente para exclusao e remove o valor do arquivo caso encontre, em seguida retorna ao menu.
 
-    - Escolhendo a opcao de Adicionar cliente, verifica se a arvore esta vazia, caso seja verdadeiro, retorna para o menu, caso falso, verifica se o cpf do cliente que sera inserido existe no arquivo, caso verdadeiro, retorna ao menu, caso falso verifica se possui espaco para insercao, caso verdadeiro, realiza a insercao do valor no arquivo, em seguida retorna ao menu.
+  - Escolhendo a opcao de Adicionar cliente, verifica se a arvore esta vazia, caso seja verdadeiro, retorna para o menu, caso falso, verifica se o cpf do cliente que sera inserido existe no arquivo, caso verdadeiro, retorna ao menu, caso falso verifica se possui espaco para insercao, caso verdadeiro, realiza a insercao do valor no arquivo, em seguida retorna ao menu.
 
-    - A opcao de sair finaliza a aplicacao.
+  - A opcao de sair finaliza a aplicacao.
 
 ![Scrennshot](src/files/diagrama-estado.png)
 
@@ -69,6 +69,8 @@
 - cada dado possui (nome, idade, cpf): clientes
 
 - cada pagina possui 10 dados por arquivo, um total de 100 arquivos
+
+- O valor do cpf deve ser um numero natural maior do zero
 
 - m = 2, minino é igual a m-1 e maximo é igual a (m * 2) - 1
   - minino: 1 | maximo: 3
