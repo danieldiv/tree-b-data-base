@@ -36,7 +36,7 @@
 
     - Escolhendo a opcao de Excluir cliente, verifica se a arvore esta vazia, caso seja verdadeiro, retorna para o menu, caso falso, realiza a pesquisa do cliente para exclusao e remove o valor do arquivo caso encontre, em seguida retorna ao menu.
 
-    - Escolhendo a opcao de Adicionar cliente, verifica se a arvore esta vazia, caso seja verdadeiro, retorna para o menu, caso falso, verifica se o cpf do cliente que sera inserido existe no arquivo, caso verdadeiro, retorna ao menu, caso falso, realiza a insercao do valor no arquivo, em seguida retorna ao menu.
+    - Escolhendo a opcao de Adicionar cliente, verifica se a arvore esta vazia, caso seja verdadeiro, retorna para o menu, caso falso, verifica se o cpf do cliente que sera inserido existe no arquivo, caso verdadeiro, retorna ao menu, caso falso verifica se possui espaco para insercao, caso verdadeiro, realiza a insercao do valor no arquivo, em seguida retorna ao menu.
 
     - A opcao de sair finaliza a aplicacao.
 
