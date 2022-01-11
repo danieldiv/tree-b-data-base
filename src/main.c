@@ -194,6 +194,11 @@ int menu() {
 	return op;
 }
 
+/**
+ * @brief createFile: funcao utilizando apenas uma vez no main para criar os arquivos
+ * 
+ * @param l lista que possui as informacoes para criacao dos arquivos, como o no, o seu limite e o nome do arquivo
+ */
 void createFile(Lista *l) {
     Block *aux;
 
