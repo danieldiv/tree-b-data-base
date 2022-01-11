@@ -25,6 +25,13 @@
 
 - O diagrama abaixo mostra o funcionamento da aplicacao
 
+  - Inicialmente a lista e declarada, sendo utilizada para guardar as informacacoes que seram gravadas no arquivo.
+
+  - Em seguida a arvore B e criada com informacoes presentes no arquivo clientes-original.txt
+
+  - No menu de opcoes a 5 caminho para percorrer:
+    - Escolhendo a insercao dos na arvore, sera verificado se a arvore esteja vazia, caso seja falso, retorna para o menu, caso verdadeiro, inserir na arvore e retorna ao menu.
+
 ![Scrennshot](src/files/diagrama-estado.png)
 
 ## Base de dados
