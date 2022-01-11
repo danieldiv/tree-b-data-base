@@ -5,7 +5,7 @@
 #include <stdio.h>
 #include <string.h>
 
-#define M 1
+#define M (2) - 1
 #define MM (M * 2 + 1)
 
 #define FALSE 0
