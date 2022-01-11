@@ -11,6 +11,8 @@
   - 3 -> Realiza a exclusao de um cliente pelo cpf caso exista
   - 4 -> Inseri um cliente no arquivo caso tenha espaco
 
+![Scrennshot](src/files/diagrama-estado.png)
+
 ## Base de dados
 
 - A base de dados com o nome pode ser encontrada em:
