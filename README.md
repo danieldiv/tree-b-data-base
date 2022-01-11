@@ -1,5 +1,17 @@
 # Arvore B - Banco de Dados
 
+## Compilacao
+
+- Para compilar utilizar os comandos abaixo:
+
+> make
+
+> make clean
+
+> make run
+
+- O codigo foi desenvolvido no ambiente linux ubunto
+
 ## Menu
 
 ![Scrennshot](src/files/menu.png)
@@ -10,6 +22,8 @@
   - 2 -> Realiza a pesquisa de um cliente pelo cpf caso exista
   - 3 -> Realiza a exclusao de um cliente pelo cpf caso exista
   - 4 -> Inseri um cliente no arquivo caso tenha espaco
+
+- O diagrama abaixo mostra o funcionamento da aplicacao
 
 ![Scrennshot](src/files/diagrama-estado.png)
 
